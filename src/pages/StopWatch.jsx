@@ -17,12 +17,22 @@ function StopWatch() {
     return () => clearInterval(interval)
   }, [running]);
 
+  let min = Math.floor((time / 60000) % 60)
+  let mins = "0" + min
+  let timeMin = mins.slice(-2)
+  let sec = Math.floor((time / 1000) % 60)
+  let secs = "0" + sec
+  let timeSec = secs.slice(-2)
+  let msec = Math.floor((time / 10) % 100)
+  let ms = "0" + msec
+  let timeMs = ms.slice(-2)
+
   return (
     <div className="stopwatch">
       <div className="numbers">
-        <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
-        <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-        <span>{("0" + Math.floor((time / 10) % 100)).slice(-2)}</span>
+        <span>{timeMin}:</span>
+        <span>{timeSec}:</span>
+        <span>{timeMs}</span>
       </div>
       <div className="buttons">
         <button onClick={() => setRunning(true)}>Start</button>
